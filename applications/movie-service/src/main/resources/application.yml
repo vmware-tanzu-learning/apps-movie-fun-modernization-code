@@ -1,0 +1,19 @@
+server.port: 8082
+
+spring:
+  jpa:
+    generate-ddl: true
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/movies?useSSL=false
+    username: root
+    tomcat:
+      max-active: 4
+      max-idle: 4
+      min-idle: 4
+      initial-size: 4
+
+logging.level:
+  root: WARN
+  org.superbiz.moviefun: DEBUG

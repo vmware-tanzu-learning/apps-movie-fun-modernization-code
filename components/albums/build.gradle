@@ -1,18 +1,16 @@
 apply from: "../../java.gradle"
 
 dependencies {
+    compile project(":components:blobstore")
+
     compile "org.springframework:spring-core:$springVersion"
     compile "org.springframework:spring-web:$springVersion"
     compile "org.springframework:spring-context:$springVersion"
     compile "org.springframework:spring-jdbc:$springVersion"
-    compile "com.fasterxml.jackson.core:jackson-databind:2.8.4"
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.7.0"
 
     compile "org.hibernate:hibernate-core:$hibernateVersion"
     compile "org.slf4j:slf4j-api:$slf4jVersion"
-
-    compile "org.apache.tika:tika-core:1.14"
-    compile "com.amazonaws:aws-java-sdk:1.11.74"
 
     testCompile "junit:junit:$junitVersion"
 }

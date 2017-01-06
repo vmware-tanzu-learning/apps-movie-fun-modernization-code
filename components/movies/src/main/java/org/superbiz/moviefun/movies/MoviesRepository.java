@@ -29,7 +29,7 @@ import javax.persistence.metamodel.EntityType;
 import java.util.List;
 
 @Repository
-public class MoviesBean {
+public class MoviesRepository {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

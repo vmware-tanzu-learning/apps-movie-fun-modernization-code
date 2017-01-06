@@ -1,0 +1,24 @@
+---
+applications:
+- name: album-service
+  path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
+  routes:
+    - route: album-service-{UNIQUE_IDENTIFIER}.{DOMAIN}
+  services:
+  - album-database
+  - photo-storage
+- name: movie-service
+  path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
+  routes:
+    - route: movie-service-{UNIQUE_IDENTIFIER}.{DOMAIN}
+  services:
+  - movie-database
+- name: movie-fun-app
+  path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  routes:
+    - route: movie-fun-app-{UNIQUE_IDENTIFIER}.{DOMAIN}
+  services:
+  - photo-storage
+  env:
+    ALBUMS_URL: http://album-service-{UNIQUE_IDENTIFIER}.{DOMAIN}/albums
+    MOVIES_URL: http://movie-service-{UNIQUE_IDENTIFIER}.{DOMAIN}/movies

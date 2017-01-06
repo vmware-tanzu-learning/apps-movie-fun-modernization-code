@@ -1,0 +1,5 @@
+apply from: "../../java.gradle"
+dependencies {
+    compile "com.fasterxml.jackson.core:jackson-databind:2.8.4"
+    testCompile "junit:junit:$junitVersion"
+}
