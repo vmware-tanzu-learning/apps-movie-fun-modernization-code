@@ -1,0 +1,41 @@
+import groovy.json.JsonSlurper
+
+private static Map acquireMysqlCredentials(databaseInstanceName) {
+    execute(['cf', 'create-service-key', databaseInstanceName, 'flyway-migration-key'])
+
+    def serviceKeyJson = execute(['cf', 'service-key', databaseInstanceName, 'flyway-migration-key'])
+            .replaceFirst(/(?s)^[^{]*/, '')
+
+    def map = new JsonSlurper().parseText(serviceKeyJson) as Map
+    return map
+}
+
+ext.setupProdFlywayExtension = { extension, databaseInstanceName ->
+    def mysqlCredentials = acquireMysqlCredentials(databaseInstanceName)
+
+    if (mysqlCredentials != null) {
+        def databaseName = mysqlCredentials["name"]
+        def user = mysqlCredentials["username"]
+        def password = mysqlCredentials["password"]
+        def url = "jdbc:mysql://127.0.0.1:63306/" + databaseName
+
+        extension.user = user
+        extension.password = password
+        extension.url = url
+    }
+
+    return extension
+}
+
+ext.getMysqlHost = { databaseInstanceName ->
+    def mysqlCredentials = acquireMysqlCredentials(databaseInstanceName)
+
+    return mysqlCredentials["hostname"]
+}
+
+private static String execute(List args) {
+    def process = args.execute()
+    def output = process.text
+    process.waitFor()
+    return output
+}

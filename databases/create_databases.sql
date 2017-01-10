@@ -1,0 +1,2 @@
+CREATE DATABASE albums;
+CREATE DATABASE movies;

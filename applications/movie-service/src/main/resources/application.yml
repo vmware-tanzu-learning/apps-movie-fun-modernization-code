@@ -2,7 +2,6 @@ server.port: 8082
 
 spring:
   jpa:
-    generate-ddl: true
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
 
   datasource:
