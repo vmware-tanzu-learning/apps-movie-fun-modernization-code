@@ -8,12 +8,24 @@ group = "org.superbiz"
 version = "1.1.0-SNAPSHOT"
 description = "OpenEJB :: Web Examples :: Moviefun"
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
+
 dependencies {
     compile project(":components:movie-fun-api")
     compile project(":components:cf-support")
 
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.springframework.security:spring-security-taglibs"
+
+    // Bring in support for legacy OAuth autoconfiguration
+    // See https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#oauth2
+    compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springSecurityOAuthAutoconfigVersion"
+    compile "io.pivotal.spring.cloud:spring-cloud-sso-connector:$springCloudSsoVersion"
 
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.7.0"
     compile "taglibs:standard:1.1.2"
@@ -22,4 +34,10 @@ dependencies {
     compile "org.apache.tomcat.embed:tomcat-embed-jasper:8.5.6"
 
     testCompile "junit:junit:$junitVersion"
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
 }
