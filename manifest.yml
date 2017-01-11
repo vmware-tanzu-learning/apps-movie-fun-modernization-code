@@ -8,6 +8,7 @@ applications:
   - album-database
   - photo-storage
   - movie-fun-sso
+  - movie-fun-registry
   env:
     GRANT_TYPE: client_credentials
 - name: movie-service
@@ -17,6 +18,7 @@ applications:
   services:
   - movie-database
   - movie-fun-sso
+  - movie-fun-registry
   env:
     GRANT_TYPE: client_credentials
 - name: movie-fun-app
@@ -26,6 +28,7 @@ applications:
   services:
   - photo-storage
   - movie-fun-sso
+  - movie-fun-registry
   env:
     ALBUMS_URL: http://album-service-{UNIQUE_IDENTIFIER}.{DOMAIN}/albums
     MOVIES_URL: http://movie-service-{UNIQUE_IDENTIFIER}.{DOMAIN}/movies

@@ -1,6 +1,9 @@
 server.port: 8081
 
 spring:
+  application:
+    name: album-service
+
   jpa:
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
 

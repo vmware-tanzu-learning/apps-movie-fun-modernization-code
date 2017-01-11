@@ -1,5 +1,6 @@
 package org.superbiz.moviefun;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ public class DevelopmentSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    @LoadBalanced
     public RestOperations restOperations() {
         return new RestTemplate();
     }

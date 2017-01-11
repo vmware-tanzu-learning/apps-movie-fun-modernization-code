@@ -1,19 +1,34 @@
 # Movie Fun!
 
-## Tests
+## Build
 
-Smoke Tests require server running on port 8080 by default.
-
-### Build JAR ignoring tests
+### Build JAR
 
 ```bash
-$ ./gradlew clean build -xtest
+$ ./gradlew clean assemble
 ```
 
-### Run Smoke Tests against specific URL
+### Run Smoke Tests
 
 ```bash
+./gradlew test
+```
+
+Smoke Tests require server running on port 8080 by default. To run against a custom URL run
+```bash
 $ MOVIE_FUN_URL=http://moviefun.example.com ./gradlew test
+```
+
+## Deploying to PCF
+
+After running the build, deploy the application with
+```bash
+./gradlew deploy
+```
+
+Reset the entire PCF environment with
+```bash
+./gradlew resetPcfEnv
 ```
 
 ## Migrations
