@@ -29,6 +29,7 @@ applications:
   - photo-storage
   - movie-fun-sso
   - movie-fun-registry
+  - movie-fun-config-server
   env:
     ALBUMS_URL: http://album-service-{UNIQUE_IDENTIFIER}.{DOMAIN}/albums
     MOVIES_URL: http://movie-service-{UNIQUE_IDENTIFIER}.{DOMAIN}/movies

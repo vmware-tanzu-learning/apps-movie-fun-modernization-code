@@ -16,6 +16,7 @@
  */
 package org.superbiz.moviefun.moviesapi;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -31,7 +32,8 @@ public class MovieServlet extends HttpServlet {
 
     private static final long serialVersionUID = -5832176047021911038L;
 
-    public static int PAGE_SIZE = 5;
+    @Value("${movies.pagesize}")
+    public int pageSize;
 
     private MoviesClient moviesClient;
 
@@ -97,8 +99,8 @@ public class MovieServlet extends HttpServlet {
             } catch (Exception e) {
             }
 
-            int pageCount = (count / PAGE_SIZE);
-            if (pageCount == 0 || count % PAGE_SIZE != 0) {
+            int pageCount = (count / pageSize);
+            if (pageCount == 0 || count % pageSize != 0) {
                 pageCount++;
             }
 
@@ -110,13 +112,13 @@ public class MovieServlet extends HttpServlet {
                 page = pageCount;
             }
 
-            int start = (page - 1) * PAGE_SIZE;
+            int start = (page - 1) * pageSize;
             List<MovieInfo> range;
 
             if (StringUtils.isEmpty(key) || StringUtils.isEmpty(field)) {
-                range = moviesClient.findAll(start, PAGE_SIZE);
+                range = moviesClient.findAll(start, pageSize);
             } else {
-                range = moviesClient.findRange(field, key, start, PAGE_SIZE);
+                range = moviesClient.findRange(field, key, start, pageSize);
             }
 
             int end = start + range.size();
