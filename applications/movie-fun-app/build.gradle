@@ -23,13 +23,14 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-tomcat"
     compile "org.springframework.security:spring-security-taglibs"
 
+    compile "io.github.resilience4j:resilience4j-spring-boot2:1.2.0"
+
     // Bring in support for legacy OAuth autoconfiguration
     // See https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#oauth2
     compile "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:$springSecurityOAuthAutoconfigVersion"
     compile "io.pivotal.spring.cloud:spring-cloud-sso-connector:$springCloudSsoVersion"
     compile "io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry"
     compile "io.pivotal.spring.cloud:spring-cloud-services-starter-config-client"
-
 
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.7.0"
     compile "taglibs:standard:1.1.2"

@@ -19,3 +19,18 @@ albums:
   url: //album-service/albums
 movies:
   url: //movie-service/movies
+
+# To expose actuator endpoints - NOT FOR PRODUCTION USE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,circuitbreakers
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+    hystrix:
+      enabled: false
