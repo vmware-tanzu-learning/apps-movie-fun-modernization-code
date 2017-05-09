@@ -1,8 +1,30 @@
-apply from: "../../java.gradle"
+buildscript {
+    ext {
+        kotlinVersion = "1.1.2-3"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+    }
+}
+
+apply plugin: "kotlin"
+apply plugin: "kotlin-spring"
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     compile project(":components:blobstore")
 
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     compile "org.springframework:spring-core:$springVersion"
     compile "org.springframework:spring-web:$springVersion"
     compile "org.springframework:spring-context:$springVersion"
